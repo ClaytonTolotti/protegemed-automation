@@ -33,5 +33,14 @@ public class StepDefs_ProtegemedHome {
 	public void clicar_no_botao_enviar() throws Exception {
 		protegemedHomepage.checkImFeelingLuckyButtonIsDisplayed();
 	}
-
+	
+	@Then("^abrir arquivo de log para frequencia$")
+	public void abrir_arquivo_de_log_para_frequencia() throws Exception {
+		protegemedHomepage.openFileLogFrequencia();
+	}
+	
+	@Then("^abrir arquivo de log para corrente$")
+	public void abrir_arquivo_de_log_para_corrente() throws Exception {
+		protegemedHomepage.openFileLogCorrente();
+	}
 }

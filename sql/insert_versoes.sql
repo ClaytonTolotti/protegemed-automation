@@ -1,1 +1,0 @@
-insert into protegemed.versao(data, id_versao, descricao) values(now(), '1.0', 'Versão Rebonatto');

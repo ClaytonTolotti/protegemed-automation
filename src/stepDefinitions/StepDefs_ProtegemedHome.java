@@ -36,6 +36,7 @@ public class StepDefs_ProtegemedHome {
 	
 	@Then("^abrir arquivo de log para frequencia$")
 	public void abrir_arquivo_de_log_para_frequencia() throws Exception {
+		
 		protegemedHomepage.openFileLogFrequencia();
 	}
 	

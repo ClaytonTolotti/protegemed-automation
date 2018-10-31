@@ -1,8 +1,6 @@
 package seleniumPages;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 
 import org.openqa.selenium.By;
@@ -16,8 +14,13 @@ public class Page_ProtegemedHome extends Page_BasePage {
 	
 	private static Actions actions;
 	private static WebElement webElement;
+	private static final String file ="/opt/apache-tomcat-9.0.12/logs/drools-application.txt";
 	
 	public void abrirBrowser() {
+		if (System.getProperty("os.name").equals("Linux")) {
+			System.setProperty("webdriver.chrome.driver", 
+					"/home/clayton/Downloads/chromedriver_linux64/chromedriver");	
+		}
 		driver = new ChromeDriver();
 		actions = new Actions(driver);
 	}
@@ -67,58 +70,12 @@ public class Page_ProtegemedHome extends Page_BasePage {
 	}
 	
 	public void openFileLogFrequencia() throws FileNotFoundException, IOException {
-		String file = "C:\\Users\\clayton.tolotti\\apps\\apache-tomcat-9.0.12\\logs\\drools-application.txt";
-		String everything = "";
-		String frequencia = null;
-		
-		try(BufferedReader br = new BufferedReader(new FileReader(file))) {
-		    StringBuilder sb = new StringBuilder();
-		    String line = br.readLine();
-
-		    while (line != null) {
-		        sb.append(line);
-		        sb.append(System.lineSeparator());
-		        line = br.readLine();
-		    }
-		    everything = sb.toString();
-		    String temp[] = null;
-		    temp = everything.split("\\r\\n");
-		    if(temp.length > 0) {
-		    	frequencia = temp[temp.length-1];
-		    }
-		}
 		driver.findElement(By.id("fileInput")).sendKeys(file);
 		webElement = driver.findElement(By.id("fileDisplayArea"));
-		actions.moveToElement(webElement);
-		actions.sendKeys(frequencia);
-		actions.build().perform();
 	}
 	
 	public void openFileLogCorrente() throws FileNotFoundException, IOException {
-		String file = "C:\\Users\\clayton.tolotti\\apps\\apache-tomcat-9.0.12\\logs\\drools-application.txt";
-		String everything = "";
-		String corrente = null;
-		try(BufferedReader br = new BufferedReader(new FileReader(file))) {
-		    StringBuilder sb = new StringBuilder();
-		    String line = br.readLine();
-
-		    while (line != null) {
-		        sb.append(line);
-		        sb.append(System.lineSeparator());
-		        line = br.readLine();
-		    }
-		    everything = sb.toString();
-		    String t[] = null;
-		    t = everything.split("\\r\\n");
-		    if(t.length > 0) {
-		    	corrente = t[t.length-2];
-		    }
-		}
 		driver.findElement(By.id("fileInput")).sendKeys(file);
 		webElement = driver.findElement(By.id("fileDisplayArea"));
-		actions.moveToElement(webElement);
-		actions.sendKeys(corrente);
-		actions.build().perform();
-		
 	}
 }
